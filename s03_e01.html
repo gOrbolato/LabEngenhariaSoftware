@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana 03</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 5px;
+            width: 200px;
+        }
+        button {
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
+        ol {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Adicionar Itens</h1>
+    <form id="itemForm">
+        <label for="itemInput">Digite um item:</label>
+        <input type="text" id="itemInput" placeholder="Ex: Maçã" required>
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <h2>Itens Cadastrados</h2>
+    <ol id="itemLista"></ol>
+    <script src="s03_e01.js"></script>
+</body>
+</html>
