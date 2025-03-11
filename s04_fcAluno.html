@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #4CAF50;
+    }
+
+    /* Estilização dos campos do formulário */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="date"],
+    .form-group input[type="url"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    /* Estilização dos botões */
+    .button-group {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin: 0 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    button[type="reset"] {
+        background-color: #f44336;
+        color: white;
+    }
+
+    button:hover {
+        opacity: 0.9;
+    }
+
+    /* Estilização dos campos ocultos */
+    .hidden {
+        display: none;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+        .container {
+            padding: 15px;
+        }
+    }
+</style>
+<body>
+    <form id="registrationForm">
+        <div class="container">
+            <h1>Formulário de Registro</h1>
+            <!-- Campos comuns -->
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <!-- Campos de telefone -->
+            <div class="form-group">
+                <label for="telefoneFixo">Telefone Fixo:</label>
+                <input type="text" id="telefoneFixo" placeholder="(99)9999-9999">
+            </div>
+
+            <div class="form-group">
+                <label for="telefoneCelular">Telefone Celular:</label>
+                <input type="text" id="telefoneCelular" placeholder="(99)99999-9999" required>
+            </div>
+
+            <!-- Data de Nascimento -->
+            <div class="form-group">
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input 
+                    type="text" 
+                    id="dataNascimento" 
+                    required 
+                    placeholder="DD/MM/YYYY"
+                    oninput="this.value = maskDate(this.value)"
+                >
+            </div>
+
+            <!-- Seleção de papel (Professor/Aluno) -->
+            <div class="form-group">
+                <label>Selecione seu papel:</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="role" value="professor" onclick="toggleFields()"> Professor
+                    </label>
+                    <label>
+                        <input type="radio" name="role" value="aluno" onclick="toggleFields()" required> Aluno
+                    </label>
+                </div>
+            </div>
+
+            <!-- Campos condicionais -->
+            <div id="professorFields" class="hidden">
+                <div class="form-group">
+                    <label for="areaAtuacao">Curso:</label>
+                    <input type="text" id="areaAtuacao" placeholder="Digite seu curso" required>
+                </div>
+
+            <div id="alunoFields" class="hidden">
+                <div class="form-group">
+                    <label for="matricula">Matrícula:</label>
+                    <input type="text" id="matricula" placeholder="Digite sua matrícula" required>
+                </div>
+            </div>
+
+            <!-- Botões de ação -->
+            <div class="button-group">
+                <button type="button" onclick="document.getElementById('registrationForm').reset()">Redefinir</button>
+                <button type="button" onclick="submitForm()">Enviar</button>
+            </div>
+        </div>
+    </form>
+    <script src="s04_fcPro.js"></script>
+</body>
+</html>
