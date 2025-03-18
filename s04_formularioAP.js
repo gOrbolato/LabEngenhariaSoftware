@@ -7,11 +7,10 @@ function maskDate(value) {
 }
 
 // Classe Base: Pessoa
-function Pessoa(nome, email, telefoneFixo, telefoneCelular, dataNascimento) {
+function Pessoa(nome, email, matricula, dataNascimento) {
     this.nome = nome;
     this.email = email;
-    this.telefoneFixo = telefoneFixo;
-    this.telefoneCelular = telefoneCelular;
+    this.matricula = matricula;
     this.dataNascimento = dataNascimento;
 }
 
@@ -19,7 +18,7 @@ Pessoa.prototype.validar = function() {
     if (!this.nome) return this._exibirErro("Nome é obrigatório!");
     if (!this.email) return this._exibirErro("Email é obrigatório!");
     if (!this._validarEmail()) return this._exibirErro("Email inválido!");
-    if (!this.telefoneCelular) return this._exibirErro("Telefone Celular é obrigatório!");
+    if (!this.matricula) return this._exibirErro("Matrícula Fixa é obrigatória!");
     if (!this._validarData()) return this._exibirErro("Data de Nascimento inválida (DD/MM/YYYY)!");
     return true;
 };
@@ -45,12 +44,26 @@ Pessoa.prototype._exibirErro = function(mensagem) {
     return false;
 };
 
+// Classe Aluno (Herança de Pessoa)
+function Aluno(nome, email, matricula, dataNascimento, curso) {
+    Pessoa.call(this, nome, email, matricula, dataNascimento);
+    this.curso = curso;
+}
+
+Aluno.prototype = Object.create(Pessoa.prototype);
+Aluno.prototype.constructor = Aluno;
+
+Aluno.prototype.validar = function() {
+    if (!Pessoa.prototype.validar.call(this)) return false;
+    if (!this.curso) return this._exibirErro("Curso é obrigatório para Alunos!");
+    return true;
+};
+
 // Classe Professor (Herança de Pessoa)
-function Professor(nome, email, telefoneFixo, telefoneCelular, dataNascimento, areaAtuacao, lattes, matricula) {
-    Pessoa.call(this, nome, email, telefoneFixo, telefoneCelular, dataNascimento);
+function Professor(nome, email, matricula, dataNascimento, areaAtuacao, lattes) {
+    Pessoa.call(this, nome, email, matricula, dataNascimento);
     this.areaAtuacao = areaAtuacao;
     this.lattes = lattes;
-    this.matricula = matricula; // Matrícula agora pertence ao Professor
 }
 
 Professor.prototype = Object.create(Pessoa.prototype);
@@ -60,7 +73,6 @@ Professor.prototype.validar = function() {
     if (!Pessoa.prototype.validar.call(this)) return false;
     if (!this.areaAtuacao) return this._exibirErro("Área de Atuação é obrigatória para Professores!");
     if (!this.lattes || !this._validarURL()) return this._exibirErro("Link do Lattes inválido!");
-    if (!this.matricula) return this._exibirErro("Matrícula é obrigatória para Professores!");
     return true;
 };
 
@@ -72,10 +84,13 @@ Professor.prototype._validarURL = function() {
 function toggleFields() {
     const role = document.querySelector('input[name="role"]:checked').value;
     const professorFields = document.getElementById('professorFields');
-    
+    const alunoFields = document.getElementById('alunoFields');
+
     if (role === 'professor') {
         professorFields.classList.remove('hidden');
-    } else {
+        alunoFields.classList.add('hidden');
+    } else if (role === 'aluno') {
+        alunoFields.classList.remove('hidden');
         professorFields.classList.add('hidden');
     }
 }
@@ -84,28 +99,27 @@ function toggleFields() {
 function submitForm() {
     // Verificação de papel selecionado
     const selectedRole = document.querySelector('input[name="role"]:checked');
-    if (!selectedRole) return alert("Selecione um papel (Professor)");
+    if (!selectedRole) return alert("Selecione um papel (Professor/Aluno)");
 
     // Coletar dados comuns
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
-    const telefoneFixo = document.getElementById('telefoneFixo').value;
-    const telefoneCelular = document.getElementById('telefoneCelular').value;
+    const matricula = document.getElementById('matriculaFixa').value;
     const dataNascimento = document.getElementById('dataNascimento').value;
 
-    // Coletar dados específicos do Professor
-    const areaAtuacao = document.getElementById('areaAtuacao').value;
-    const lattes = document.getElementById('lattes').value;
-    const matricula = document.getElementById('matricula').value;
-
-    const usuario = new Professor(
-        nome, email, telefoneFixo, telefoneCelular, dataNascimento, 
-        areaAtuacao, lattes, matricula
-    );
-
-    // Validar e exibir mensagem de sucesso
-    if (usuario.validar()) {
-        alert("Formulário enviado com sucesso!");
-        console.log(usuario);
+    let usuario;
+    if (selectedRole.value === 'aluno') {
+        // Coletar dados específicos do Aluno
+        const curso = document.getElementById('curso').value;
+        usuario = new Aluno(
+            nome, email, matricula, dataNascimento, curso
+        );
+    } else if (selectedRole.value === 'professor') {
+        // Coletar dados específicos do Professor
+        const areaAtuacao = document.getElementById('areaAtuacao').value;
+        const lattes = document.getElementById('lattes').value;
+        usuario = new Professor(
+            nome, email, matricula, dataNascimento, areaAtuacao, lattes
+        );
     }
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de Pessoas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+
+    #app {
+      text-align: center;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .counter-value {
+      font-size: 48px;
+      font-weight: bold;
+      color: #333;
+      margin: 20px 0;
+    }
+
+    .counter-buttons button {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .counter-buttons button.increment {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .counter-buttons button.decrement {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .counter-buttons button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>  
+  <script src="s05_contador.js"></script>
+</body>
+</html>
