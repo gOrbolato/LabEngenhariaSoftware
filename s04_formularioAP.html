@@ -27,7 +27,7 @@
             color: #4CAF50;
         }
 
-        /* Estilização dos campos do formulário */
+        /* estilizando campos do formulário */
         .form-group {
             margin-bottom: 15px;
         }
@@ -48,7 +48,7 @@
             border-radius: 4px;
         }
 
-        /* Estilização dos botões */
+        /* estilizando os botões */
         .button-group {
             text-align: center;
             margin-top: 20px;
@@ -77,12 +77,12 @@
             opacity: 0.9;
         }
 
-        /* Estilização dos campos ocultos */
+        /* estilizando campos ocultos */
         .hidden {
             display: none;
         }
 
-        /* Responsividade */
+        /* responsividade */
         @media (max-width: 600px) {
             .container {
                 padding: 15px;
@@ -95,7 +95,7 @@
         <div class="container">
             <h1>Formulário de Registro</h1>
 
-            <!-- Campos comuns -->
+            <!-- campos comuns -->
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" required>
@@ -106,13 +106,13 @@
                 <input type="email" id="email" required>
             </div>
 
-            <!-- Matrícula -->
+            <!-- matrícula -->
             <div class="form-group">
                 <label for="matriculaFixa">Matrícula:</label>
                 <input type="text" id="matriculaFixa" placeholder="Digite sua matrícula" required>
             </div>
 
-            <!-- Data de Nascimento -->
+            <!-- data de nascimento -->
             <div class="form-group">
                 <label for="dataNascimento">Data de Nascimento:</label>
                 <input 
@@ -124,7 +124,7 @@
                 >
             </div>
 
-            <!-- Seleção de papel (Professor/Aluno) -->
+            <!-- selecionando o papel (prof/aluno) -->
             <div class="form-group">
                 <label>Selecione seu papel:</label>
                 <div class="radio-group">
@@ -137,7 +137,7 @@
                 </div>
             </div>
 
-            <!-- Campos condicionais -->
+            <!-- campos condicionais -->
             <div id="professorFields" class="hidden">
                 <div class="form-group">
                     <label for="areaAtuacao">Área de Atuação:</label>
@@ -156,7 +156,7 @@
                 </div>
             </div>
 
-            <!-- Botões de ação -->
+            <!-- botões de ação -->
             <div class="button-group">
                 <button type="button" onclick="submitForm()">Enviar</button>
                 <button type="button" onclick="document.getElementById('registrationForm').reset()">Redefinir</button>

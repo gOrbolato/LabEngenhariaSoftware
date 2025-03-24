@@ -1,15 +1,14 @@
-// Função para criar o contador de pessoas
 function createPeopleCounter() {
     const app = document.getElementById('app');
   
-    // Criar título
+    // cria título
     const title = document.createElement('h1');
     title.textContent = 'Contador de Pessoas';
     title.style.fontSize = '24px';
     title.style.color = '#333';
     title.style.textAlign = 'center';
   
-    // Contador Total
+    // contador Total
     const totalContainer = document.createElement('div');
     totalContainer.style.marginBottom = '20px';
     totalContainer.style.textAlign = 'center';
@@ -28,7 +27,7 @@ function createPeopleCounter() {
     totalContainer.appendChild(totalLabel);
     totalContainer.appendChild(totalValue);
   
-    // Contador de Homens
+    // contador de Homens
     const menContainer = document.createElement('div');
     menContainer.style.display = 'flex';
     menContainer.style.alignItems = 'center';
@@ -36,11 +35,11 @@ function createPeopleCounter() {
     menContainer.style.marginBottom = '10px';
   
     const menSymbol = document.createElement('span');
-    menSymbol.textContent = '♂'; // Símbolo de homem
+    menSymbol.textContent = '♂'; // símbolo 
     menSymbol.style.fontSize = '40px';
-    menSymbol.style.color = '#007bff'; // Cor azul para homens
+    menSymbol.style.color = '#007bff'; // cor azul para homens
     menSymbol.style.marginRight = '10px';
-    menSymbol.title = 'Homens'; // Tooltip para esclarecer
+    menSymbol.title = 'Homens'; 
   
     const menLabel = document.createElement('span');
     menLabel.textContent = 'Homens: ';
@@ -79,7 +78,7 @@ function createPeopleCounter() {
     menContainer.appendChild(menIncrementButton);
     menContainer.appendChild(menDecrementButton);
   
-    // Contador de Mulheres
+    // contador de Mulheres
     const womenContainer = document.createElement('div');
     womenContainer.style.display = 'flex';
     womenContainer.style.alignItems = 'center';
@@ -87,11 +86,11 @@ function createPeopleCounter() {
     womenContainer.style.marginBottom = '20px';
   
     const womenSymbol = document.createElement('span');
-    womenSymbol.textContent = '♀'; // Símbolo de mulher
+    womenSymbol.textContent = '♀'; // símbolo
     womenSymbol.style.fontSize = '40px';
-    womenSymbol.style.color = '#e83e8c'; // Cor rosa para mulheres
+    womenSymbol.style.color = '#e83e8c'; // cor rosa para mulheres
     womenSymbol.style.marginRight = '10px';
-    womenSymbol.title = 'Mulheres'; // Tooltip para esclarecer
+    womenSymbol.title = 'Mulheres'; 
   
     const womenLabel = document.createElement('span');
     womenLabel.textContent = 'Mulheres: ';
@@ -130,14 +129,14 @@ function createPeopleCounter() {
     womenContainer.appendChild(womenIncrementButton);
     womenContainer.appendChild(womenDecrementButton);
   
-    // Funções para atualizar o contador total
+    // atualiza o contador total
     function updateTotal() {
       const menCount = parseInt(menValue.textContent);
       const womenCount = parseInt(womenValue.textContent);
       totalValue.textContent = menCount + womenCount;
     }
   
-    // Eventos para Homens
+    // eventos para homens
     menIncrementButton.onclick = () => {
       let currentValue = parseInt(menValue.textContent);
       menValue.textContent = currentValue + 1;
@@ -152,7 +151,7 @@ function createPeopleCounter() {
       }
     };
   
-    // Eventos para Mulheres
+    // eventos para mulheres
     womenIncrementButton.onclick = () => {
       let currentValue = parseInt(womenValue.textContent);
       womenValue.textContent = currentValue + 1;
@@ -167,12 +166,12 @@ function createPeopleCounter() {
       }
     };
   
-    // Montar a estrutura no DOM
+    // monta estrutura no DOM
     app.appendChild(title);
     app.appendChild(totalContainer);
     app.appendChild(menContainer);
     app.appendChild(womenContainer);
   }
   
-  // Inicializar o contador quando a página carregar
+  // inicializa o contador quando a página carregar
 window.onload = createPeopleCounter;

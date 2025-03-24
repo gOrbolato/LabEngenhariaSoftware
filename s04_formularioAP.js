@@ -1,4 +1,4 @@
-// Máscara para data no formato DD/MM/YYYY
+// data no formato DD/MM/YYYY
 function maskDate(value) {
     value = value.replace(/[^0-9/]/g, '');
     value = value.replace(/(\d{2})(\d)/, '$1/$2');
@@ -6,7 +6,7 @@ function maskDate(value) {
     return value;
 }
 
-// Classe Base: Pessoa
+// classe base: Pessoa
 function Pessoa(nome, email, matricula, dataNascimento) {
     this.nome = nome;
     this.email = email;
@@ -44,7 +44,7 @@ Pessoa.prototype._exibirErro = function(mensagem) {
     return false;
 };
 
-// Classe Aluno (Herança de Pessoa)
+// classe Aluno (herança classe: Pessoa)
 function Aluno(nome, email, matricula, dataNascimento, curso) {
     Pessoa.call(this, nome, email, matricula, dataNascimento);
     this.curso = curso;
@@ -59,7 +59,7 @@ Aluno.prototype.validar = function() {
     return true;
 };
 
-// Classe Professor (Herança de Pessoa)
+// classe prof (herança classe: Pessoa)
 function Professor(nome, email, matricula, dataNascimento, areaAtuacao, lattes) {
     Pessoa.call(this, nome, email, matricula, dataNascimento);
     this.areaAtuacao = areaAtuacao;
@@ -80,7 +80,7 @@ Professor.prototype._validarURL = function() {
     return /^https?:\/\/[^\s]+$/.test(this.lattes);
 };
 
-// Função para alternar campos condicionais
+// alternancia nos campos condicionais
 function toggleFields() {
     const role = document.querySelector('input[name="role"]:checked').value;
     const professorFields = document.getElementById('professorFields');
@@ -95,13 +95,13 @@ function toggleFields() {
     }
 }
 
-// Função para enviar o formulário
+// enviar o formulário
 function submitForm() {
-    // Verificação de papel selecionado
+    // verifica o papel selecionado
     const selectedRole = document.querySelector('input[name="role"]:checked');
     if (!selectedRole) return alert("Selecione um papel (Professor/Aluno)");
 
-    // Coletar dados comuns
+    // coleta dados comuns
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
     const matricula = document.getElementById('matriculaFixa').value;
@@ -109,13 +109,13 @@ function submitForm() {
 
     let usuario;
     if (selectedRole.value === 'aluno') {
-        // Coletar dados específicos do Aluno
+        // coleta dados específicos do aluno
         const curso = document.getElementById('curso').value;
         usuario = new Aluno(
             nome, email, matricula, dataNascimento, curso
         );
     } else if (selectedRole.value === 'professor') {
-        // Coletar dados específicos do Professor
+        // coleta dados específicos do prof
         const areaAtuacao = document.getElementById('areaAtuacao').value;
         const lattes = document.getElementById('lattes').value;
         usuario = new Professor(
