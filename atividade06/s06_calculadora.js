@@ -73,7 +73,7 @@ function calculate() {
     case '-':
       result = subtract(previousInput, currentInput);
       break;
-    case 'x':
+    case '*':
       result = multiply(previousInput, currentInput);
       break;
     case '/':
@@ -130,7 +130,7 @@ buttons.forEach(buttonText => {
   button.style.color = '#333';
   button.style.transition = 'background-color 0.3s';
 
-  // Estilo para cada botão
+  // estilo para cada botão
   if (buttonText === '-') {
     button.style.backgroundColor = '#ffcccc'; // fundo vermelho claro
     button.addEventListener('mouseenter', () => {

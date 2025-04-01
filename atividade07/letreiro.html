@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letreiro React</title>
+    <!-- bibliotecas react e reactDOM -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- babel para compilar jsx -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <!-- react será renderizado -->
+    <div id="root"></div>
+
+    <!-- script react com JSX -->
+    <script type="text/babel">
+        function Letreiro() {
+            const [texto, setTexto] = React.useState(""); // inicio vazio
+            const frase = "Venha estudar na Fatec!"; // frase
+
+            // simula a digitação
+            React.useEffect(() => {
+                let index = 0;
+                const interval = setInterval(() => {
+                    if (index < frase.length) {
+                        setTexto((prevTexto) => prevTexto + frase[index]);
+                        index++;
+                    } else {
+                        clearInterval(interval); // para intervalo ao finalizar
+                    }
+                }, 150); // intervalo para letras
+
+                return () => clearInterval(interval); // limpa o intervalo
+            }, []);
+
+            return <h1>{texto}</h1>; // renderiza
+        }
+        ReactDOM.render(<Letreiro />, document.getElementById('root'));
+    </script>
+</body>
+</html>
